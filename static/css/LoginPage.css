@@ -55,7 +55,7 @@
     height: 100%;
     object-fit:contain;
     z-index: 5; 
-    background-color: blueviolet;
+    background-color: rgb(197, 192, 202);
 }
 .hd1{
     width: 150px;
@@ -75,6 +75,7 @@
 }
 
 label{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: large;
     color: bisque;
     

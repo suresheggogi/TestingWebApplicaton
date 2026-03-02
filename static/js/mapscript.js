@@ -6,8 +6,8 @@ document.addEventListener("DOMContentLoaded", function () {
     // }).addTo(map);
 
     L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-        maxZoom: 22,
-        attribution: 'Tiles © Esri'
+        maxZoom: 30,
+        // attribution: 'Tiles © Esri'
     }).addTo(map);
 
 
@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if(!file)return;
 
         const reader = new FileReader;
-
+``
         reader.onload = function(e){
 
             shp(e.target.result).then(function(geojson) {
@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             {
                                 popupContent += 
                                 "<tr>"+
-                                "<td> <b>"+ key + "<b> </td>" + 
+                                "<td> "+ key + " </td>" + 
                                 "<td>" + feature.properties[key]+"</td>" +
                                 "</tr>"
                             }
@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                         layer.on("click", function () {
                             openbtn();
-                            document.getElementById("sildebar1").innerHTML = popupContent;
+                            document.getElementById("attr-table1").innerHTML = popupContent;
                         });
                     }
                   

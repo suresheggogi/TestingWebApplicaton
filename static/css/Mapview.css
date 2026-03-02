@@ -51,7 +51,7 @@ a {
 }
 
  #mapid {
-    width: 100%;
+    width: 100%; 
     height: 850px;
     border: 1px solid black;
     cursor: pointer;
@@ -96,19 +96,19 @@ a {
 }
 .sliderbar {
     display: block;
-    width: 200px;
-    height: 600px;
-    background-color: rgb(232, 245, 245);
-    border: 1px solid rgb(53, 13, 13);
+    width: 250px;
+    height: 320px;
+    /* background-color: rgb(209, 213, 226); */
+    /* border: 1px solid rgb(53, 13, 13); */
    
     
 }
 .lablebox{
     margin: 10px;
-    width: 180px;
+    width: 230px;
     height: 300px;
     border: 1px solid black;
-    color: rgb(17, 50, 78);
+    color: rgb(15, 18, 21);
     font-family:"1rem Fira Sans", sans-serif;
     border-radius: 5px;
 }
@@ -117,11 +117,23 @@ a {
     margin-left: 20px;
     
 }
-
-/* .sliderbar .btn{
-    position:relative;
-    margin-top: 10px;
-    color: black;
+.attributes{
+    /* padding: 10px; */
     
-} */
+    display: block;
+    width: 250px;
+    height: 400px;
+    /* background-color: rgb(209, 213, 226); */
+    /* border: 1px solid rgb(53, 13, 13); */
 
+
+}
+.attr-table{
+
+    margin-left: 10px;
+    display: block;
+    width: 240px;
+    height: 400px;
+    /* background-color: rgb(78, 100, 173); */
+
+}
