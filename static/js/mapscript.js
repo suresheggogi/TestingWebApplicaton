@@ -4,10 +4,10 @@ var currentLayer; // Global variable to store the current layer
 document.addEventListener("DOMContentLoaded", function () {
     map = L.map("mapid").setView([17.3993, 78.49059], 15);
 
-    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-        maxZoom: 30,
-        
-    }).addTo(map);
+    
+
+   
+    
 
     document.getElementById("inputfile").addEventListener("change", function (event) {
 
@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                             popupContent += "</table>";
 
-                          layer.bindPopup(popupContent);
+                        //   layer.bindPopup(popupContent);
 
                         layer.on("click", function () {
                             try {
@@ -100,10 +100,27 @@ document.addEventListener("DOMContentLoaded", function () {
     
 });
 function openNav() {
-        // alert("Projects clicked!");
-        document.getElementById("mySidenav").style.width = "400px";
+       
+        document.getElementById("mySidenav").style.width = "250px";
     }
     function closeNav() {
         document.getElementById("mySidenav").style.width = "0";
     }
 
+function showmap() {
+    //  alert("Projects clicked!");
+      L.tileLayer(
+    'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+    {
+        maxZoom: 19,
+        
+    }
+).addTo(map);
+}
+
+function showImage() {
+    //  alert("Projects clicked!");
+     L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+        maxZoom: 30,    
+    }).addTo(map);
+}

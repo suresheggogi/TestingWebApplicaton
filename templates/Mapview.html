@@ -25,9 +25,8 @@
                     <a href="javascript:void(0)" onclick="openNav()"><img src="{% static 'img/layers.svg' %}" class="logoicon">Projects</a>
                     <div id="mySidenav" class="sidenav">
                         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                        <a href="#">Project 1</a>
-                        <a href="#">Project 2</a>
-                        <a href="#">Project 3</a>
+                        <a href="#">Amrut 1</a>
+                        
                     </div>
 
                     <a href="#"><img src="{% static 'img/Mapview_icon.png' %}" alt="noimg" class="logoicon">Google Maap</a><br>
@@ -47,8 +46,13 @@
             <div class="sliderbar" id="sildebar1">
 
                 <div class="lablebox">
-                    </label><input type="radio" name = "mapOption" class="checkboxbtn">Show Map </br>
-                    </label><input type="radio" name = "mapOption" class="checkboxbtn" >Show Satellite Image</br>
+                    <label>
+                        <input type="radio" name = "mapOption" class="checkboxbtn" onclick="showmap()">Show Map 
+                    </label><br>
+
+                    <label>
+                        <input type="radio" name = "mapOption" class="checkboxbtn" onclick="showImage()">Show Satellite Image
+                    </label></br>
                     </label><input type="radio" name = "mapOption" class="checkboxbtn" >Show Labels</br>
                 </div>
                
