@@ -2,12 +2,7 @@ var map; // Global map variable
 var currentLayer; // Global variable to store the current layer
 
 document.addEventListener("DOMContentLoaded", function () {
-    map = L.map("mapid").setView([17.3993, 78.49059], 15);
-
-    
-
-   
-    
+    map = L.map("mapid").setView([17.3993, 78.49059], 19);
 
     document.getElementById("inputfile").addEventListener("change", function (event) {
 
@@ -31,11 +26,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 const lyr = L.geoJSON(geojson,{ style: mystyle,
 
                     onEachFeature: function (feature, layer) {
-                        // try {
-                        //     openbtn();
-                        // } catch(e) {
-                        //     console.warn("openbtn function not available", e);
-                        // }
+                        try {
+                            openbtn();
+                        } catch(e) {
+                            console.warn("openbtn function not available", e);
+                        }
 
                         let popupContent = "<table border='1' style='border-collapse:collapse;'><b></br>Attributes</b></br>";
 
@@ -108,19 +103,22 @@ function openNav() {
     }
 
 function showmap() {
-    //  alert("Projects clicked!");
-      L.tileLayer(
-    'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-    {
-        maxZoom: 19,
-        
-    }
-).addTo(map);
-}
+    L.tileLayer(
+        'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+        {
+            maxNativeZoom: 19,
+            maxZoom: 25 ,
+            }
+            ).addTo(map);
+            }
 
 function showImage() {
-    //  alert("Projects clicked!");
-     L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-        maxZoom: 30,    
-    }).addTo(map);
+    L.tileLayer(
+        'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+        {
+            maxNativeZoom: 19,
+            maxZoom: 22
+            }
+            ).addTo(map);
 }
+
