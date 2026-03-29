@@ -11,9 +11,6 @@
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
         <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
         <script src="https://unpkg.com/shpjs@latest/dist/shp.min.js"></script> 
-          
-        
-        
                
     </head>
    
@@ -23,13 +20,13 @@
 
            <div class="slidelist">
                 <div class="navilist">
-
-                    <a href="#"><img src="{% static 'img/layers.svg' %}"  alt="noimg"  class="logoicon">Projects</a><br>
+                    
+                    <a href="#"><img src="{% static 'img/layers.svg' %}" class="logoicon">Projects</a>
                     <a href="#"><img src="{% static 'img/Mapview_icon.png' %}" alt="noimg" class="logoicon">Google Maap</a><br>
                     <a href="#"><img src="{% static 'img/Processig_icon.png' %}" alt="noimg" class="logoicon">Bing Map</a><br>
                     <a href="#"><img src="{% static 'img/Settings_icon.png' %}" alt="noimg" class="logoicon">Settings</a><br> 
-                  
                 </div>
+                
             </div> 
 
             <div class="mapviewer">
@@ -39,37 +36,24 @@
             </div>
             
             
-           
- 
-
             <div class="sliderbar" id="sildebar1">
-                <div class="lablebox">
-                    <!-- </label><input type="checkbox" name = "mapOption" class="checkboxbtn">Show Map </br>
-                    </label><input type="checkbox" name = "mapOption" class="checkboxbtn" >Show Satellite Image</br>
-                    </label><input type="checkbox" name = "mapOption" class="checkboxbtn" >Show Labels</br> -->
 
+                <div class="lablebox">
                     </label><input type="radio" name = "mapOption" class="checkboxbtn">Show Map </br>
                     </label><input type="radio" name = "mapOption" class="checkboxbtn" >Show Satellite Image</br>
                     </label><input type="radio" name = "mapOption" class="checkboxbtn" >Show Labels</br>
-                    
-
-                     
-
-
                 </div>
-                <a href="javascript:void(0)" onclick="closebtn()" class="btn" style="width: 300px;"></a>
+               
                 
                 <div class="attributes" id="attributes1">
-                    <div class="attr-table" id="attr-table1">
-
-                    </div>
-
+                    <div class="attr-table" id="attr-table1"></div>
                 </div>
               
                
             </div>
 
             <div class="rightbar">
+                
                  <div class="drawingcontrolers">
                     <a href="#"><img src="{% static 'img/man-user.svg' %}"alt="noimg" class="logoicon2"></a><br>
                     <a href="#"><img src="{% static 'img/pencil-edit-button.svg' %}"alt="noimg" class="logoicon2"></a><br>
