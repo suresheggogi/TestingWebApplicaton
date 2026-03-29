@@ -103,21 +103,28 @@ function openNav() {
     }
 
 function showmap() {
-    L.tileLayer(
-        'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-        {
-            maxNativeZoom: 19,
-            maxZoom: 25 ,
-            }
-            ).addTo(map);
-            }
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxNativeZoom: 19,
+        maxZoom: 22,
+        attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+
+    // L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+    //     attribution: '&copy; OpenStreetMap contributors &copy; CARTO'
+    //     }).addTo(map);
+
+
+
+}
 
 function showImage() {
     L.tileLayer(
         'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
         {
             maxNativeZoom: 19,
-            maxZoom: 22
+            maxZoom: 22,
+            attribution: 'Tiles © Esri'
             }
             ).addTo(map);
 }
