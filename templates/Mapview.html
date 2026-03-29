@@ -21,7 +21,15 @@
            <div class="slidelist">
                 <div class="navilist">
                     
-                    <a href="#"><img src="{% static 'img/layers.svg' %}" class="logoicon">Projects</a>
+                    <!-- <a href="#"><img src="{% static 'img/layers.svg' %}" class="logoicon">Projects</a> -->
+                    <a href="javascript:void(0)" onclick="openNav()"><img src="{% static 'img/layers.svg' %}" class="logoicon">Projects</a>
+                    <div id="mySidenav" class="sidenav">
+                        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                        <a href="#">Project 1</a>
+                        <a href="#">Project 2</a>
+                        <a href="#">Project 3</a>
+                    </div>
+
                     <a href="#"><img src="{% static 'img/Mapview_icon.png' %}" alt="noimg" class="logoicon">Google Maap</a><br>
                     <a href="#"><img src="{% static 'img/Processig_icon.png' %}" alt="noimg" class="logoicon">Bing Map</a><br>
                     <a href="#"><img src="{% static 'img/Settings_icon.png' %}" alt="noimg" class="logoicon">Settings</a><br> 
