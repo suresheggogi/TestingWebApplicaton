@@ -27,6 +27,18 @@
                         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
                         <a href="#">Amrut 1</a>
                         
+                        <div style="border:1px solid #ccc; padding:10px;">
+                            <h4>Tables in NeonDB</h4>
+                          
+                            <ul>{% for schema, table in tables %}
+                                <li>{{ schema }}.{{ table }}</li>
+                                {% empty %}
+                                <li>No tables found.</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        
+                        
                     </div>
 
                     <!-- <a href="#"><img src="{% static 'img/Mapview_icon.png' %}" alt="noimg" class="logoicon">Google Maap</a><br>
