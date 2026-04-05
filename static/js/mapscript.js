@@ -1,6 +1,7 @@
 var map; // Global map variable
 var currentLayer; // Global variable to store the current layer
 
+
 document.addEventListener("DOMContentLoaded", function () {
     map = L.map("mapid").setView([17.3993, 78.49059], 19);
 
@@ -9,9 +10,11 @@ document.addEventListener("DOMContentLoaded", function () {
         var mystyle = {
             color: "black",
             weight: 1.2,
-            fillOpacity: 0,
-            fill : "false",
-        }
+            fill: true,
+            fillColor: "transparent",
+            fillOpacity: 0
+        };
+
         var file = event.target.files[0];
 
         if(!file)return;
@@ -22,10 +25,28 @@ document.addEventListener("DOMContentLoaded", function () {
 
             shp(e.target.result).then(function(geojson) {
                 console.log("GeoJSON loaded:", geojson);
-                
+
+            
                 const lyr = L.geoJSON(geojson,{ style: mystyle,
 
                     onEachFeature: function (feature, layer) {
+                        
+                        // hight light the polygone code starting
+                        layer.on({
+                            mouseover: function (e) {
+                                e.target.setStyle({
+                                    weight: 5,
+                                    color: "#666",
+                                    fillOpacity: 0.3
+                                    });
+                                },
+                            mouseout: function (e) {
+                                geojsonLayer.resetStyle(e.target);
+                                }
+                            });
+                        // hight light the polygone code closing
+
+
                         try {
                             openbtn();
                         } catch(e) {
@@ -45,8 +66,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
                             popupContent += "</table>";
 
-                        //   layer.bindPopup(popupContent);
-
+                        //    layer.bindPopup(popupContent);
+                       
                         layer.on("click", function () {
                             try {
                                 openbtn();
@@ -55,10 +76,15 @@ document.addEventListener("DOMContentLoaded", function () {
                             }
                             document.getElementById("attr-table1").innerHTML = popupContent;
                         });
+                        
+                        
+
                     }
-                  
-               });
+                });
                 lyr.addTo(map);
+
+                geojsonLayer = lyr;
+
                 currentLayer = lyr; // Store the layer globally
                 
                 try {
@@ -88,12 +114,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
         };
         reader.readAsArrayBuffer(file);
-
-
     });
-
-    
+   
 });
+
+
 function openNav() {
        
         document.getElementById("mySidenav").style.width = "450px";
@@ -103,29 +128,20 @@ function openNav() {
     }
 
 function showmap() {
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+
+    currentLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxNativeZoom: 19,
         maxZoom: 22,
         attribution: '© OpenStreetMap contributors'
-        }).addTo(map);
-
-
-    // L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-    //     attribution: '&copy; OpenStreetMap contributors &copy; CARTO'
-    //     }).addTo(map);
-
-
-
+    }).addTo(map);
 }
 
 function showImage() {
-    L.tileLayer(
-        'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
-        {
+
+    currentLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',{
             maxNativeZoom: 19,
             maxZoom: 22,
             attribution: 'Tiles © Esri'
-            }
-            ).addTo(map);
+        }).addTo(map);
 }
 
