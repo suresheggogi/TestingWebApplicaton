@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         layer.on({
                             mouseover: function (e) {
                                 e.target.setStyle({
-                                    weight: 5,
+                                    weight: 2,
                                     color: "#666",
                                     fillOpacity: 0.3
                                     });
