@@ -1,9 +1,15 @@
 var map; // Global map variable
 var currentLayer; // Global variable to store the current layer
+var baseLayer; // Global variable to store the base map
 var bounds;
 
 document.addEventListener("DOMContentLoaded", function () {
     map = L.map("mapid").setView([17.3993, 78.49059], 19);
+
+    // baseLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    //     maxZoom: 19,
+    //     attribution: '© OpenStreetMap contributors'
+    // }).addTo(map);
 
     document.getElementById("inputfile").addEventListener("change", function (event) {
 
@@ -137,30 +143,28 @@ function openNav() {
 
 function showmap() {
 
-    // Remove previous layer
     if (currentLayer) {
         map.removeLayer(currentLayer);
     }
 
-    // ✅ Correct WMS URL (REMOVE GetCapabilities)
     currentLayer = L.tileLayer.wms(
-        "http://localhost:8080/geoserver/ows?",   // ✅ FIXED
+        "http://localhost:8080/geoserver/webapplictiondata/ows",
         {
-            layers: "webapplictiondata:JANGAON_SEAMLESS", // 🔥 change this
+            layers: "Urban_Land_Use_And_Cover",
+            styles: "",
             format: "image/png",
             transparent: false,
-            version: "1.1.1"
+            version: "1.1.1",
+            srs: "EPSG:3857",
+            fillColor: "transparent",
+            fillOpacity: 0,
+            attribution: '© GeoServer',
         }
     ).addTo(map);
 
-    // ✅ AUTO ZOOM (VERY IMPORTANT)
-    var bounds = L.latLngBounds(
-        [17.694466804087778, 79.13554123671189],   // minY, minX  (change as per your layer)
-        [17.74100204698142, 79.18874530624664]    // maxY, maxX
-    );
-
-    map.fitBounds(bounds);
+    map.setView([17.72, 79.16], 15);
 }
+
 
 
 function showImage() {
