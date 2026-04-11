@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
             weight: 1.2,
             fill: true,
             fillColor: "transparent",
-            fillOpacity: 0
+            fillOpacity: 0,
         };
 
         var file = event.target.files[0];
