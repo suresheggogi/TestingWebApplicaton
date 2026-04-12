@@ -152,13 +152,14 @@ function Masterplan1(checkbox) {
                     version: "1.1.1",
                     srs: "EPSG:3857",
                     attribution: '© GeoServer',
-                    zIndex: 1000
+                    zIndex: 1000,
+                    maxZoom: 30,
                 }
             );
         }
         masterplanLayer.addTo(map);
         masterplanLayer.bringToFront();
-        map.setView([17.72, 79.16], 15);
+        map.setView([17.72, 79.16]);
        
     } else {
         // Checkbox OFF
@@ -174,7 +175,7 @@ function showmap(checkbox) {
     if (checkbox.checked) {
         if (!osmLayer) {
             osmLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                maxZoom: 21,
+                maxZoom: 30,
                 attribution: '© OpenStreetMap contributors',
                 zIndex: 1
             });
@@ -197,9 +198,9 @@ function showImage(checkbox) {
         if (!imageLayer) {
             imageLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',{
                 maxNativeZoom: 15,
-                maxZoom: 21,
+                maxZoom: 30,
                 attribution: 'Tiles © Esri',
-                zIndex: 2
+                zIndex: 1
             });
         }
         imageLayer.addTo(map);
