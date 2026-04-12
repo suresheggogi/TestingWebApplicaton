@@ -1,6 +1,8 @@
 var map; // Global map variable
-var currentLayer; // Global variable to store the current layer
-var baseLayer; // Global variable to store the base map
+var geojsonLayer; // Global variable to store the uploaded GeoJSON/shapefile layer
+var masterplanLayer; // Global variable for the Nalgonda Master Plan WMS overlay
+var osmLayer; // Global variable for the OSM base map layer
+var imageLayer; // Global variable for the satellite imagery layer
 var bounds;
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -139,58 +141,75 @@ function Masterplan1(checkbox) {
     if (checkbox.checked) {
 
         // Checkbox ON
-        currentLayer = L.tileLayer.wms(
-            "http://localhost:8080/geoserver/webapplictiondata/ows",
-            {
-                layers: "Urban_Land_Use_And_Cover",
-                styles: "",
-                format: "image/png",
-                transparent: true,
-                version: "1.1.1",
-                srs: "EPSG:3857",
-                fillColor: "transparent",
-                fillOpacity: 0,
-                attribution: '© GeoServer',
-            }
-    ).addTo(map);
-    map.setView([17.72, 79.16], 15);
+        if (!masterplanLayer) {
+            masterplanLayer = L.tileLayer.wms(
+                "http://localhost:8080/geoserver/webapplictiondata/ows",
+                {
+                    layers: "Urban_Land_Use_And_Cover",
+                    styles: "",
+                    format: "image/png",
+                    transparent: true,
+                    version: "1.1.1",
+                    srs: "EPSG:3857",
+                    attribution: '© GeoServer',
+                    zIndex: 1000
+                }
+            );
+        }
+        masterplanLayer.addTo(map);
+        masterplanLayer.bringToFront();
+        map.setView([17.72, 79.16], 15);
        
     } else {
-        //Checkbox OFF
-        if (currentLayer) {
-            map.removeLayer(currentLayer);
-            }
+        // Checkbox OFF
+        if (masterplanLayer && map.hasLayer(masterplanLayer)) {
+            map.removeLayer(masterplanLayer);
         }
-}    
+    }
+}
 
 
 
 function showmap(checkbox) {
     if (checkbox.checked) {
-         mapLayers = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 21,
-            attribution: '© OpenStreetMap contributors'
-            }).addTo(map);
-                
-    } else {
-        if (mapLayers) {
-            map.removeLayer(mapLayers);
-            }
+        if (!osmLayer) {
+            osmLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 21,
+                attribution: '© OpenStreetMap contributors',
+                zIndex: 1
+            });
         }
+        osmLayer.addTo(map);
+    } else {
+        if (osmLayer && map.hasLayer(osmLayer)) {
+            map.removeLayer(osmLayer);
+        }
+    }
+
+    if (masterplanLayer && map.hasLayer(masterplanLayer)) {
+        masterplanLayer.bringToFront();
+    }
 }
 
 function showImage(checkbox) {
 
     if (checkbox.checked) {
-        imagelayers = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',{
-            maxNativeZoom: 15,
-            maxZoom: 21,
-            attribution: 'Tiles © Esri'
-        }).addTo(map);
-                
-    } else {
-        if (imagelayers) {
-            map.removeLayer(imagelayers);
-            }
+        if (!imageLayer) {
+            imageLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',{
+                maxNativeZoom: 15,
+                maxZoom: 21,
+                attribution: 'Tiles © Esri',
+                zIndex: 2
+            });
         }
+        imageLayer.addTo(map);
+    } else {
+        if (imageLayer && map.hasLayer(imageLayer)) {
+            map.removeLayer(imageLayer);
+        }
+    }
+
+    if (masterplanLayer && map.hasLayer(masterplanLayer)) {
+        masterplanLayer.bringToFront();
+    }
 }
