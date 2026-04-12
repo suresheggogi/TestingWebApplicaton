@@ -23,6 +23,10 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the project code
 COPY . /app/
 
+# Run database migrations (ignore if database doesn't exist or table exists)
+RUN python manage.py migrate || true
+
+
 # Collect static files
 RUN python manage.py collectstatic --noinput || true
 
@@ -34,6 +38,8 @@ USER app
 
 # Make port 8000 available to the world outside this container
 EXPOSE 8000
+
+
 
 # Set the Django settings module
 ENV DJANGO_SETTINGS_MODULE=giswebApplciation.settings

@@ -4,6 +4,7 @@ var baseLayer; // Global variable to store the base map
 var bounds;
 
 document.addEventListener("DOMContentLoaded", function () {
+
     map = L.map("mapid").setView([17.3993, 78.49059], 19);
 
     // baseLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -126,53 +127,70 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 function openNav() {
-       
-        document.getElementById("mySidenav").style.width = "450px";
+    document.getElementById("mySidenav").style.width = "450px";
     }
     function closeNav() {
         document.getElementById("mySidenav").style.width = "0";
-    }
-
-// function showmap() {
-//     currentLayer = L.tileLayer('http://localhost:8080/geoserver/ows?service=WMS&version=1.3.0&request=GetCapabilities', {
-//         maxNativeZoom: 19,
-//         maxZoom: 22,
-//         attribution: '© OpenStreetMap contributors'
-//     }).addTo(map);
-// }
-
-function showmap() {
-
-    if (currentLayer) {
-        map.removeLayer(currentLayer);
-    }
-
-    currentLayer = L.tileLayer.wms(
-        "http://localhost:8080/geoserver/webapplictiondata/ows",
-        {
-            layers: "Urban_Land_Use_And_Cover",
-            styles: "",
-            format: "image/png",
-            transparent: false,
-            version: "1.1.1",
-            srs: "EPSG:3857",
-            fillColor: "transparent",
-            fillOpacity: 0,
-            attribution: '© GeoServer',
         }
-    ).addTo(map);
+    
 
+function Masterplan1(checkbox) {
+
+    if (checkbox.checked) {
+
+        // Checkbox ON
+        currentLayer = L.tileLayer.wms(
+            "http://localhost:8080/geoserver/webapplictiondata/ows",
+            {
+                layers: "Urban_Land_Use_And_Cover",
+                styles: "",
+                format: "image/png",
+                transparent: true,
+                version: "1.1.1",
+                srs: "EPSG:3857",
+                fillColor: "transparent",
+                fillOpacity: 0,
+                attribution: '© GeoServer',
+            }
+    ).addTo(map);
     map.setView([17.72, 79.16], 15);
+       
+    } else {
+        //Checkbox OFF
+        if (currentLayer) {
+            map.removeLayer(currentLayer);
+            }
+        }
+}    
+
+
+
+function showmap(checkbox) {
+    if (checkbox.checked) {
+         mapLayers = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 21,
+            attribution: '© OpenStreetMap contributors'
+            }).addTo(map);
+                
+    } else {
+        if (mapLayers) {
+            map.removeLayer(mapLayers);
+            }
+        }
 }
 
+function showImage(checkbox) {
 
-
-function showImage() {
-
-    currentLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',{
-            maxNativeZoom: 19,
-            maxZoom: 22,
+    if (checkbox.checked) {
+        imagelayers = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',{
+            maxNativeZoom: 15,
+            maxZoom: 21,
             attribution: 'Tiles © Esri'
         }).addTo(map);
+                
+    } else {
+        if (imagelayers) {
+            map.removeLayer(imagelayers);
+            }
+        }
 }
-

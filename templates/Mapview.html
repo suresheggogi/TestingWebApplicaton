@@ -28,14 +28,18 @@
                         <a href="#">Amrut 1</a>
                         
                         <div style="border:1px solid #ccc; padding:10px;">
-                            <h4>Tables in NeonDB</h4>
-                          
+                            <label>
+                                <input type="checkbox" name = "mapOption" class="checkboxbtn" onclick="Masterplan1(this)">Nalgonda Master Plan
+                            </label>
+
+
+                            <!-- <h4>Tables in NeonDB</h4>
                             <ul>{% for schema, table in tables %}
                                 <li>{{ schema }}.{{ table }}</li>
                                 {% empty %}
                                 <li>No tables found.</li>
                                 {% endfor %}
-                            </ul>
+                            </ul> -->
                         </div>
                         
                         
@@ -58,12 +62,15 @@
             <div class="sliderbar" id="sildebar1">
 
                 <div class="lablebox">
+
+                    
                     <label>
-                        <input type="radio" name = "mapOption" class="checkboxbtn" onclick="showmap()">Show Map 
+                        <input type="checkbox" name = "mapOption" class="checkboxbtn" onclick="showmap(this)">Show Map
+                        
                     </label><br>
 
                     <label>
-                        <input type="radio" name = "mapOption" class="checkboxbtn" onclick="showImage()">Show Satellite Image
+                        <input type="checkbox" name = "mapOption" class="checkboxbtn" onclick="showImage(this)">Show Satellite Image
                     </label></br>
 
                     
