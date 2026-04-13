@@ -135,6 +135,7 @@ function openNav() {
         document.getElementById("mySidenav").style.width = "0";
         }
     
+// Master Plan view code
 
 function Masterplan1(checkbox) {
 
@@ -159,7 +160,13 @@ function Masterplan1(checkbox) {
         }
         masterplanLayer.addTo(map);
         masterplanLayer.bringToFront();
-        map.setView([17.72, 79.16]);
+        map.fitBounds([
+            [17.694466804087778, 79.13554123671189],  // SW (Min Y, Min X)
+            [17.74100204698142, 79.18874530624664]   // NE (Max Y, Max X)
+            ]);
+
+        // map.setView([17.72, 79.16], 5);
+        
        
     } else {
         // Checkbox OFF
@@ -170,6 +177,7 @@ function Masterplan1(checkbox) {
 }
 
 
+// Map view code
 
 function showmap(checkbox) {
     if (checkbox.checked) {
@@ -191,6 +199,8 @@ function showmap(checkbox) {
         masterplanLayer.bringToFront();
     }
 }
+
+// Satellite image view
 
 function showImage(checkbox) {
 
