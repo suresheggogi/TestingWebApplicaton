@@ -10,63 +10,74 @@
     display: flex;
     width: auto;
     height: 150px;
-    background-color: rgb(255, 255, 255);
-    color: rgb(26, 28, 29);
+    /* background-color:	#AFEEEE;  */
+
+    /* color: rgb(26, 28, 29); */
+    background: linear-gradient(to left, #ccc6ca , #d3d1d1);;
     border: 1px solid black;
 }
 .Container{
     display: flex;
-    position: fixed;
+    position: relative;
     width: 100%;
-    height: 100vh;
-    /* top: 0;
-    left: 0; */
-    z-index: -2;
-   
-}   
+    min-height: calc(100vh - 150px);
+}
+
 .leftbar{
     width: 15%;
     height: 100vh;
-    /* background-color: blue; */
+    /* background-color: blue;  */
     z-index: 100;
 }
 
 .rightbar{
-    width: 90%;
-    height: 100vh;
-    background-color: rgb(58, 58, 107);
+    position: relative;
+    width: 85%;
+    min-height: calc(100vh - 150px);
+    /* background-color:#778899; */
+    background: linear-gradient(to left, #e6e6f0 , #b0afb1);; 
+    overflow: hidden;
     z-index: 100;
 }
+.LoginpageBackground_icon{
+    margin-top: 50px;
+    margin-left: -100px;
+    inset: 0;
+    width: 60%;
+    height: 60%;
+    object-fit:contain;
+    z-index: 1;
+}
+
 .loginform{
     position: absolute;
+    top: 50%;
+    left: 60%;
+    transform: translate(-50%, -50%);
     padding: 30px;
     width: 350px;
-    height: 500px   ;
-    border: 1px solid rgb(240, 234, 234);
-    margin: 10%;
-    margin-left: 55%;
-    background-color:FFFFFF;
+    height: 500px;
+    border: 2px solid rgb(24, 2, 34);
+    background-color:	#1099ac;
     border-radius: 10px;
-    box-shadow: 2px 2px 5px 3px rgba(175, 68, 130, 0.411);
-    z-index: 60000;
+    box-shadow: 2px 2px 5px 3px rgba(15, 15, 15, 0.411);
+    z-index: 2;
 }
 .leftbar-icon{
     width: 100%;
     height: 100%;
     object-fit:contain;
     z-index: 5; 
-    background-color: rgb(197, 192, 202);
-}
-.hd1{
-    width: 150px;
-    margin-left: 90px;
-      
+    /* background-color: rgb(197, 192, 202); */
+    background-color:#f8f8ff; */
+    /* background: linear-gradient(to left, #cfc6cc , #BE5869);; */
 }
 .hd2{
     display: flex;
-    margin-left: 450px;
+    margin-left: 40%; 
     align-items: center;
     justify-content: center;
+    
        
 }
 .tglogo{
@@ -77,7 +88,7 @@
 label{
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: large;
-    color: bisque;
+    color: rgb(7, 4, 0);
     
 }
 input[type=radio]{
