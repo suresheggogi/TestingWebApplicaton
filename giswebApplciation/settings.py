@@ -98,6 +98,11 @@ DATABASES = {
     }
 }
 
+GEOSERVER = {
+    "URL": "http://localhost:8080/geoserver/",
+    "USERNAME": "admin",
+    "PASSWORD": "suresh@1234",
+}
 
 
 # Password validation
