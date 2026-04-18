@@ -53,8 +53,8 @@ a {
     height: 90%;
     width: 0; /* hidden by default */
     position: fixed;
-    top: 6px;
-    left: 75px;
+    top: 7px;
+    left: 72px;
     background-color: #578996;
     overflow-x: hidden;
     transition: 0.5s;
