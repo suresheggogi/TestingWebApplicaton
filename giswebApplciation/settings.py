@@ -99,11 +99,11 @@ DATABASES = {
 }
 
 GEOSERVER = {
-    "URL": "http://localhost:8080/geoserver/",
+    "WMS_URL": "http://localhost:8080/geoserver/webapplictiondata/wms",
     "USERNAME": "admin",
     "PASSWORD": "suresh@1234",
+    "LAYER": "webapplictiondata:Urban_Land_Use_And_Cover",
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
