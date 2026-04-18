@@ -50,7 +50,7 @@ a {
 }
  /* side navigaton css */
 .sidenav {
-    height: 100%;
+    height: 50%;
     width: 0; /* hidden by default */
     position: fixed;
     top: 0;
