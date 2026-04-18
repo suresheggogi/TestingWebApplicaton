@@ -52,9 +52,9 @@ a {
 .sidenav {
     height: 90%;
     width: 0; /* hidden by default */
-    position: relative;
+    position: fixed;
     top: 0;
-    left: 300px;
+    left: 85px;
     background-color: #578996;
     overflow-x: hidden;
     transition: 0.5s;
