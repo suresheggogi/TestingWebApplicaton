@@ -144,9 +144,9 @@ function Masterplan1(checkbox) {
         // Checkbox ON
         if (!masterplanLayer) {
             masterplanLayer = L.tileLayer.wms(
-                "http://localhost:8080/geoserver/webapplictiondata/ows",
+                "http://192.168.0.226:8080/geoserver/webapplictiondata/wms",
                 {
-                    layers: "Urban_Land_Use_And_Cover",
+                    layers: "webapplictiondata:Urban_Land_Use_And_Cover",
                     styles: "",
                     format: "image/png",
                     transparent: true,

@@ -99,7 +99,7 @@ DATABASES = {
 }
 
 GEOSERVER = {
-    "WMS_URL": "http://localhost:8080/geoserver/webapplictiondata/wms",
+    "WMS_URL": "http://192.168.0.226:8080/geoserver/webapplictiondata/wms",
     "USERNAME": "admin",
     "PASSWORD": "suresh@1234",
     "LAYER": "webapplictiondata:Urban_Land_Use_And_Cover",
