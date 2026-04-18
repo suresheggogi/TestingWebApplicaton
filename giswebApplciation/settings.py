@@ -83,23 +83,23 @@ WSGI_APPLICATION = 'giswebApplciation.wsgi.application'
 #     }
 # }
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "Geodatabasesuri",
-        "USER": "postgres",
-        "PASSWORD": "npg_fmWEMsO6l2Nw",
-        "HOST": "ep-solitary-shape-a4zsd4cb-pooler.us-east-1.aws.neon.tech",
-        "PORT": "5432",  # default for PostgreSQL
-        "OPTIONS": {
-            "sslmode": "require",
-            "channel_binding": "require",
-        },
-    }
-}
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.postgresql",
+#         "NAME": "Geodatabasesuri",
+#         "USER": "postgres",
+#         "PASSWORD": "npg_fmWEMsO6l2Nw",
+#         "HOST": "ep-solitary-shape-a4zsd4cb-pooler.us-east-1.aws.neon.tech",
+#         "PORT": "5432",  # default for PostgreSQL
+#         "OPTIONS": {
+#             "sslmode": "require",
+#             "channel_binding": "require",
+#         },
+#     }
+# }
 
 GEOSERVER = {
-    "WMS_URL": "http://192.168.0.226:8080/geoserver/webapplictiondata/wms",
+    "WMS_URL": "http://192.168.100.21:8080/geoserver/webapplictiondata/wms",
     "USERNAME": "admin",
     "PASSWORD": "suresh@1234",
     "LAYER": "webapplictiondata:Urban_Land_Use_And_Cover",
