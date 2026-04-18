@@ -129,7 +129,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 function openNav() {
-    document.getElementById("mySidenav").style.width = "450px";
+    document.getElementById("mySidenav").style.width = "350px";
     }
     function closeNav() {
         document.getElementById("mySidenav").style.width = "0";
