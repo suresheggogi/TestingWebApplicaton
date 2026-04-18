@@ -46,3 +46,13 @@ ENV DJANGO_SETTINGS_MODULE=giswebApplciation.settings
 
 # Default command to run the Django development server
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+
+
+FROM docker.osgeo.org/geoserver:2.28.0
+
+# Railway uses dynamic PORT, so map it
+ENV PORT=8080
+
+# Expose port
+EXPOSE 8080
+
