@@ -144,7 +144,7 @@ function Masterplan1(checkbox) {
         // Checkbox ON
         if (!masterplanLayer) {
             masterplanLayer = L.tileLayer.wms(
-                "http://localhost:8080/geoserver/webapplictiondata/wms",
+                "https://concise-bruising-mandatory.ngrok-free.dev/geoserver/wms",
                 {
                     layers: "webapplictiondata:Urban_Land_Use_And_Cover",
                     styles: "",

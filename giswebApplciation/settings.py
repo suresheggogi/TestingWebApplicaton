@@ -99,7 +99,7 @@ DATABASES = {
 }
 
 GEOSERVER = {
-    "WMS_URL": "http://localhost:8080/geoserver/webapplictiondata/wms",
+    "WMS_URL": "https://concise-bruising-mandatory.ngrok-free.dev/geoserver/wms",
     "USERNAME": "admin",
     "PASSWORD": "suresh@1234",
     "LAYER": "webapplictiondata:Urban_Land_Use_And_Cover",
