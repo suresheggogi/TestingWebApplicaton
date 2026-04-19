@@ -143,11 +143,9 @@ function Masterplan1(checkbox) {
 
         // Checkbox ON
         if (!masterplanLayer) {
-            masterplanLayer = L.tileLayer.wms(
-                "https://concise-bruising-mandatory.ngrok-free.dev/geoserver/wms",
+            masterplanLayer = L.tileLayer.wms("https://concise-bruising-mandatory.ngrok-free.dev/geoserver/wms",
                 {
                     layers: "webapplictiondata:Urban_Land_Use_And_Cover",
-                    styles: "",
                     format: "image/png",
                     transparent: true,
                     version: "1.1.1",
@@ -155,15 +153,29 @@ function Masterplan1(checkbox) {
                     attribution: '© GeoServer',
                     zIndex: 1000,
                     maxZoom: 30,
-                }
-            );
-        }
-        masterplanLayer.addTo(map);
-        masterplanLayer.bringToFront();
-        map.fitBounds([
-            [17.694466804087778, 79.13554123671189],  // SW (Min Y, Min X)
-            [17.74100204698142, 79.18874530624664]   // NE (Max Y, Max X)
-            ]);
+                    }
+                    );
+
+            //     "https://admin:suresh@1234@concise-bruising-mandatory.ngrok-free.dev/geoserver/wms",
+            //     {
+            //         layers: "webapplictiondata:Urban_Land_Use_And_Cover",
+            //         styles: "",
+            //         format: "image/png",
+            //         transparent: true,
+            //         version: "1.1.1",
+            //         srs: "EPSG:3857",
+            //         attribution: '© GeoServer',
+            //         zIndex: 1000,
+            //         maxZoom: 30,
+            //     }
+            // );
+            }
+            masterplanLayer.addTo(map);
+            masterplanLayer.bringToFront();
+            map.fitBounds([
+                [17.694466804087778, 79.13554123671189],  // SW (Min Y, Min X)
+                [17.74100204698142, 79.18874530624664]   // NE (Max Y, Max X)
+                ]);
 
         // map.setView([17.72, 79.16], 5);
         
