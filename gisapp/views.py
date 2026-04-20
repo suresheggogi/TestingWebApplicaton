@@ -37,5 +37,3 @@ def table_list(request):
                         """)
             tables = [f"{row[0]}.{row[1]}" for row in cur.fetchall()]
             return render(request, 'tables.html', {'tables': tables})
-
-

@@ -1,0 +1,26 @@
+<dataStore>
+  <id>DataStoreInfoImpl-77beeafb:19d7c37c641:-8000</id>
+  <name>Proposed</name>
+  <type>Shapefile</type>
+  <enabled>true</enabled>
+  <workspace>
+    <id>WorkspaceInfoImpl--6fd49b:19d62496321:-8000</id>
+  </workspace>
+  <connectionParameters>
+    <entry key="charset">ISO-8859-1</entry>
+    <entry key="filetype">shapefile</entry>
+    <entry key="create spatial index">true</entry>
+    <entry key="memory mapped buffer">false</entry>
+    <entry key="timezone">Asia/Calcutta</entry>
+    <entry key="enable spatial index">true</entry>
+    <entry key="namespace">www.google.com</entry>
+    <entry key="cache and reuse memory maps">true</entry>
+    <entry key="skipScan">true</entry>
+    <entry key="url">file://D:/GeoserverData/Urban_Land_Use_And_Cover.shp</entry>
+    <entry key="fstype">shape</entry>
+  </connectionParameters>
+  <__default>false</__default>
+  <dateCreated>2026-04-11 11:05:23.263 UTC</dateCreated>
+  <dateModified>2026-04-11 11:08:57.413 UTC</dateModified>
+  <disableOnConnFailure>false</disableOnConnFailure>
+</dataStore>

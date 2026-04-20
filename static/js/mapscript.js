@@ -136,57 +136,51 @@ function openNav() {
         }
     
 // Master Plan view code
-
 function Masterplan1(checkbox) {
 
     if (checkbox.checked) {
 
-        // Checkbox ON
+        // ON
         if (!masterplanLayer) {
-            masterplanLayer = L.tileLayer.wms("https://concise-bruising-mandatory.ngrok-free.dev/geoserver/wms",
+            masterplanLayer = L.tileLayer.wms(
+                "http://localhost:8080/geoserver/wms",
                 {
                     layers: "webapplictiondata:Urban_Land_Use_And_Cover",
                     format: "image/png",
                     transparent: true,
                     version: "1.1.1",
-                    srs: "EPSG:3857",
-                    attribution: '© GeoServer',
+                    crs: L.CRS.EPSG3857,
                     zIndex: 1000,
-                    maxZoom: 30,
-                    }
-                    );
+                    maxZoom: 22,
+                    opacity: 1
+                }
+            );
+        }
 
-            //     "https://admin:suresh@1234@concise-bruising-mandatory.ngrok-free.dev/geoserver/wms",
-            //     {
-            //         layers: "webapplictiondata:Urban_Land_Use_And_Cover",
-            //         styles: "",
-            //         format: "image/png",
-            //         transparent: true,
-            //         version: "1.1.1",
-            //         srs: "EPSG:3857",
-            //         attribution: '© GeoServer',
-            //         zIndex: 1000,
-            //         maxZoom: 30,
-            //     }
-            // );
-            }
-            masterplanLayer.addTo(map);
-            masterplanLayer.bringToFront();
-            map.fitBounds([
-                [17.694466804087778, 79.13554123671189],  // SW (Min Y, Min X)
-                [17.74100204698142, 79.18874530624664]   // NE (Max Y, Max X)
-                ]);
+        masterplanLayer.addTo(map);
+        masterplanLayer.bringToFront();
 
-        // map.setView([17.72, 79.16], 5);
-        
-       
+        map.fitBounds([
+            [17.694466804087778, 79.13554123671189],
+            [17.74100204698142, 79.18874530624664]
+        ], {
+            maxZoom: 18,
+            padding: [20, 20]
+        });
+
     } else {
-        // Checkbox OFF
+
+        // ❌ OFF → remove layer
         if (masterplanLayer && map.hasLayer(masterplanLayer)) {
             map.removeLayer(masterplanLayer);
+            // OR simply:
+            // masterplanLayer.remove();
         }
+
     }
 }
+
+    
 
 
 // Map view code
