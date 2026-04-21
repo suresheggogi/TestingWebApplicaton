@@ -1,19 +1,23 @@
-
-FROM tomcat:9-jdk17
 FROM docker.osgeo.org/geoserver:2.28.1
 
-# Set environment
+USER root
+
+# Fix /tmp permissions FIRST (CRITICAL)
+RUN chmod 1777 /tmp
+
+# Install tools
+RUN apt-get update && apt-get install -y unzip wget
+
+# Set version
 ENV GEOSERVER_VERSION=2.28.1
 
-# Download GeoServer
-RUN apt-get update && apt-get install -y unzip wget && \
-    wget https://sourceforge.net/projects/geoserver/files/GeoServer/${GEOSERVER_VERSION}/geoserver-${2.28.1}-war.zip && \
-    unzip geoserver-${2.28.1}-war.zip && \
+# Download GeoServer (OPTIONAL - usually not needed)
+RUN wget https://sourceforge.net/projects/geoserver/files/GeoServer/${GEOSERVER_VERSION}/geoserver-${GEOSERVER_VERSION}-war.zip && \
+    unzip geoserver-${GEOSERVER_VERSION}-war.zip && \
     cp geoserver.war /usr/local/tomcat/webapps/geoserver.war && \
-    rm -rf geoserver-${2.28.1}-war.zip
+    rm -rf geoserver-${GEOSERVER_VERSION}-war.zip
 
-# Expose port
-EXPOSE 8080
+# Copy your data
+COPY geoserver_data/ /opt/geoserver_data/
 
-# Start Tomcat
-CMD ["catalina.sh", "run"]
+ENV GEOSERVER_DATA_DIR=/opt/geoserver_data

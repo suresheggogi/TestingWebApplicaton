@@ -50,26 +50,31 @@ CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
 
 
 
+
 FROM docker.osgeo.org/geoserver:2.28.1
 
-# Set data directory inside container
+# Set data directory
 ENV GEOSERVER_DATA_DIR=/opt/geoserver_data
 
-# Copy your local GeoServer data (VERY IMPORTANT)
+# Copy your data
 COPY geoserver_data/ /opt/geoserver_data/
 
-# Fix permissions (important for Railway/Linux)
 USER root
-RUN chmod -R 777 /opt/geoserver_data
+
+# Fix permissions
+RUN chmod -R 777 /opt/geoserver_data && \
+    chmod 1777 /tmp
 
 # Expose port
 EXPOSE 8080
 
-# Railway uses dynamic port → map it
-ENV JAVA_OPTS="-Djetty.port=8080"
 
-# Start GeoServer
-CMD ["startup.sh"]
+
+
+
+
+
+
 
 
 
