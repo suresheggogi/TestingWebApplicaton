@@ -51,22 +51,22 @@ CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
 
 
 
-FROM docker.osgeo.org/geoserver:2.28.1
+# FROM docker.osgeo.org/geoserver:2.28.1
 
-# Set data directory
-ENV GEOSERVER_DATA_DIR=/opt/geoserver_data
+# # Set data directory
+# ENV GEOSERVER_DATA_DIR=/opt/geoserver_data
 
-# Copy your data
-COPY geoserver_data/ /opt/geoserver_data/
+# # Copy your data
+# COPY geoserver_data/ /opt/geoserver_data/
 
-USER root
+# USER root
 
-# Fix permissions
-RUN chmod -R 777 /opt/geoserver_data && \
-    chmod 1777 /tmp
+# # Fix permissions
+# RUN chmod -R 777 /opt/geoserver_data && \
+#     chmod 1777 /tmp
 
-# Expose port
-EXPOSE 8080
+# # Expose port
+# EXPOSE 8080
 
 
 
