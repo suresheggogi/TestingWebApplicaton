@@ -4,6 +4,10 @@ var masterplanLayer; // Global variable for the Nalgonda Master Plan WMS overlay
 var osmLayer; // Global variable for the OSM base map layer
 var imageLayer; // Global variable for the satellite imagery layer
 var bounds;
+const siricillaBounds = [
+    [18.35347587896892, 78.73774334381076],
+    [18.433002045956698, 78.85354061285247]
+];
 
 document.addEventListener("DOMContentLoaded", function () {
 
@@ -129,6 +133,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 function openNav() {
+
     document.getElementById("mySidenav").style.width = "280px";
     }
     function closeNav() {
@@ -136,23 +141,22 @@ function openNav() {
         }
     
 // Master Plan view code
+
 function Masterplan1(checkbox) {
 
     if (checkbox.checked) {
 
-        // ON
         if (!masterplanLayer) {
+
             masterplanLayer = L.tileLayer.wms(
-                "http://localhost:8080/geoserver/wms",
+                "http://localhost:8080/geoserver/testingworkspace/wms",
                 {
-                    layers: "webapplictiondata:Urban_Land_Use_And_Cover",
+                    layers: "testingworkspace:Siricilla",
                     format: "image/png",
                     transparent: true,
                     version: "1.1.1",
-                    crs: L.CRS.EPSG3857,
-                    zIndex: 1000,
-                    maxZoom: 22,
-                    opacity: 1
+                    opacity: 1,
+                    zIndex: 1000
                 }
             );
         }
@@ -160,23 +164,14 @@ function Masterplan1(checkbox) {
         masterplanLayer.addTo(map);
         masterplanLayer.bringToFront();
 
-        map.fitBounds([
-            [17.694466804087778, 79.13554123671189],
-            [17.74100204698142, 79.18874530624664]
-        ], {
-            maxZoom: 18,
-            padding: [20, 20]
-        });
+        // ✅ NOW THIS WORKS
+        map.fitBounds(siricillaBounds);
 
     } else {
 
-        // ❌ OFF → remove layer
-        if (masterplanLayer && map.hasLayer(masterplanLayer)) {
+        if (masterplanLayer) {
             map.removeLayer(masterplanLayer);
-            // OR simply:
-            // masterplanLayer.remove();
         }
-
     }
 }
 
