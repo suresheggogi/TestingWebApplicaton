@@ -75,7 +75,9 @@ jobs:
 
             docker compose up -d webapp
 
-            docker images suresheggogi/web-app --format '{{.ID}}' | awk '!seen[$0]++' | tail -n +3 | xargs -r docker rmi
+            docker rmi root-webapp:latest 2>/dev/null || true
+
+            docker images suresheggogi/web-app -q | awk '!seen[$0]++' | tail -n +2 | xargs -r docker rmi
 
             docker image prune -f
         env:
