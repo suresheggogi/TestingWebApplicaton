@@ -149,14 +149,15 @@ function Masterplan1(checkbox) {
         if (!masterplanLayer) {
 
             masterplanLayer = L.tileLayer.wms(
-                "http://localhost:8080/geoserver/testingworkspace/wms",
+                "http://107.149.105.165:8080/geoserver/SpatialData/wms",
                 {
-                    layers: "testingworkspace:Siricilla",
+                    layers: "SpatialData:Siricilla",
                     format: "image/png",
                     transparent: true,
                     version: "1.1.1",
                     opacity: 1,
-                    zIndex: 1000
+                    zIndex: 1000,
+                    transparent: true
                 }
             );
         }
