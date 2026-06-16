@@ -63,13 +63,13 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22222
-          envs: DOCKER_USERNAME,DOCKER_PASSWORD
+          envs: DOCKER_USERNAME,DOCKER_PASSWORD,SHORT_SHA
           script: |
             echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 
             cd /root
 
-            sed -i 's|image: suresheggogi/web-app:.*|image: suresheggogi/web-app:latest|' /root/docker-compose.yml
+            sed -i "s|image: suresheggogi/web-app:.*|image: suresheggogi/web-app:$SHORT_SHA|" /root/docker-compose.yml
 
             docker compose pull webapp
 
@@ -81,3 +81,4 @@ jobs:
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+          SHORT_SHA: ${{ env.SHORT_SHA }}
