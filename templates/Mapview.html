@@ -26,26 +26,25 @@
                     <div id="mySidenav" class="sidenav">
                         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
                         <a href="#">Amrut Projects</a>
-                        
+
                         <div style="border:1px solid #270f0f; padding:10px;">
-                            <label>
-                                <input type="checkbox" name="mapOption" class="checkboxbtn" onclick="Masterplan1(this)">
-                                Siricilla
-                             </label>
-
-
-                            <!-- <h4>Tables in NeonDB</h4>
-                            <ul>{% for schema, table in tables %}
-                                <li>{{ schema }}.{{ table }}</li>
-                                {% empty %}
-                                <li>No tables found.</li>
-                                {% endfor %}
-                            </ul> -->
+                            
+                            <label style="display:flex; align-items:center; margin-bottom:8px;">
+                                <input type="checkbox" onchange="Masterplan1(this,'RoadCenterLine')">
+                                <span style="margin-left:8px;">Road Center Line</span>
+                            </label>
+                            <label style="display:flex; align-items:center; margin-bottom:8px;">
+                                <input type="checkbox" onchange="Masterplan1(this,'RightofWay')">
+                                <span style="margin-left:8px;">Right of Way</span>
+                            </label>
+                            <label style="display:flex; align-items:center;">
+                                <input type="checkbox" onchange="Masterplan1(this,'ExistingLandUse')">
+                                <span style="margin-left:8px;">Existing Land Use</span>
+                            </label>
                         </div>
-                        
-                        
-                    </div>
 
+                    </div>
+                           
                     <!-- <a href="#"><img src="{% static 'img/Mapview_icon.png' %}" alt="noimg" class="logoicon">Google Maap</a><br>
                     <a href="#"><img src="{% static 'img/Processig_icon.png' %}" alt="noimg" class="logoicon">Bing Map</a><br> -->
                     <a href="#"><img src="{% static 'img/Settings_icon.png' %}" alt="noimg" class="logoicon">Settings</a><br> 

@@ -1,13 +1,7 @@
 var map; // Global map variable
 var geojsonLayer; // Global variable to store the uploaded GeoJSON/shapefile layer
-var masterplanLayer; // Global variable for the Nalgonda Master Plan WMS overlay
 var osmLayer; // Global variable for the OSM base map layer
 var imageLayer; // Global variable for the satellite imagery layer
-var bounds;
-const siricillaBounds = [
-    [18.35347587896892, 78.73774334381076],
-    [18.433002045956698, 78.85354061285247]
-];
 
 document.addEventListener("DOMContentLoaded", function () {
 
@@ -98,8 +92,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 geojsonLayer = lyr;
 
-                currentLayer = lyr; // Store the layer globally
-                
                 try {
                     var bounds = lyr.getBounds();
                     console.log("Layer bounds:", bounds);
@@ -140,46 +132,66 @@ function openNav() {
         document.getElementById("mySidenav").style.width = "0";
         }
     
-// Master Plan view code
 
-function Masterplan1(checkbox) {
+
+
+var wmsLayers = {};
+
+function Masterplan1(checkbox, layerName) {
+
+    const wmsConfig = {
+        "ExistingLandUse": {
+            url: "http://107.149.105.165:8080/geoserver/SpatialData/wms",
+            layers: "SpatialData:Existing_Land_Use_Metpally",
+            bounds: [[18.82385378319702, 78.58564940534033], [18.886220028083216, 78.65497509892302]]
+        },
+
+        "RightofWay": {
+            url: "http://107.149.105.165:8080/geoserver/SpatialData/wms",
+            layers: "SpatialData:Right_of_Way",
+            // bounds: [[18.82385378319702, 78.58564940534033], [18.886220028083216, 78.65497509892302]]
+        },
+
+        "RoadCenterLine": {
+            url: "http://107.149.105.165:8080/geoserver/SpatialData/wms",
+            layers: "SpatialData:Road_Center_Line",
+            // bounds: [[18.82385378319702, 78.58564940534033], [18.886220028083216, 78.65497509892302]]
+          
+        }
+        
+        
+    };
 
     if (checkbox.checked) {
 
-        if (!masterplanLayer) {
+        if (!wmsLayers[layerName]) {
 
-            masterplanLayer = L.tileLayer.wms(
-                "http://107.149.105.165:8080/geoserver/SpatialData/wms",
+            wmsLayers[layerName] = L.tileLayer.wms(
+                wmsConfig[layerName].url,
                 {
-                    layers: "SpatialData:Siricilla",
+                    layers: wmsConfig[layerName].layers,
                     format: "image/png",
                     transparent: true,
                     version: "1.1.1",
-                    opacity: 1,
-                    zIndex: 1000,
-                    transparent: true
+                    opacity: 2,
+                    zIndex: 1000
                 }
             );
         }
 
-        masterplanLayer.addTo(map);
-        masterplanLayer.bringToFront();
+        wmsLayers[layerName].addTo(map);
+        wmsLayers[layerName].bringToFront();
+        if (wmsConfig[layerName].bounds) {
+            map.fitBounds(wmsConfig[layerName].bounds, {padding: [10, 10]});
+        }
+    } 
+    else {
 
-        // ✅ NOW THIS WORKS
-        map.fitBounds(siricillaBounds);
-
-    } else {
-
-        if (masterplanLayer) {
-            map.removeLayer(masterplanLayer);
+        if (wmsLayers[layerName]) {
+            map.removeLayer(wmsLayers[layerName]);
         }
     }
 }
-
-    
-
-
-// Map view code
 
 function showmap(checkbox) {
     if (checkbox.checked) {
@@ -195,10 +207,6 @@ function showmap(checkbox) {
         if (osmLayer && map.hasLayer(osmLayer)) {
             map.removeLayer(osmLayer);
         }
-    }
-
-    if (masterplanLayer && map.hasLayer(masterplanLayer)) {
-        masterplanLayer.bringToFront();
     }
 }
 
@@ -220,9 +228,5 @@ function showImage(checkbox) {
         if (imageLayer && map.hasLayer(imageLayer)) {
             map.removeLayer(imageLayer);
         }
-    }
-
-    if (masterplanLayer && map.hasLayer(masterplanLayer)) {
-        masterplanLayer.bringToFront();
     }
 }
