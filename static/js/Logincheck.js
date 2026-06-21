@@ -1,11 +1,13 @@
-document.getElementById("homeButton").addEventListener("click", function(){
-  const user = document.getElementById("unameInput").value;
+document.addEventListener("DOMContentLoaded", function () {
+  const homeButton = document.getElementById("homeButton");
+  const user = document.getElementById("unameInput").value.trim();
   const pass = document.getElementById("unamepwd").value;
 
-  if (user === "suresh" && pass === "suresh")
-     {
-    window.location.href = '/home/';
-  } else {
-    alert("Invalid credentials");
-  }
+  homeButton.addEventListener("click", function () {
+    if (user === "suresh" && pass === "suresh") {
+      window.location.href = "/home/";
+    } else {
+      alert("Invalid credentials");
+    }
+  });
 });

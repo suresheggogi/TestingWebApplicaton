@@ -10,22 +10,7 @@ def login_page(request):
     return render(request, 'LoginPage.html')
 
 def home_page(request):
-    with connection.cursor() as cur:
-        cur.execute("""
-                    SELECT schemaname, tablename
-                    FROM pg_catalog.pg_tables
-                    WHERE schemaname NOT IN ('pg_catalog', 'information_schema')
-                    ORDER BY schemaname, tablename;
-                    """)
-        tables = [(row[0], row[1]) for row in cur.fetchall()]
-    return render(request, 'Mapview.html', {'tables': tables})
-
-
-def Myexternal(request):
-    script_path = Path(__file__).resolve().parent / 'tests.py'
-    output = subprocess.check_output([sys.executable, str(script_path)], text=True)
-    return render(request, 'Show.html', {'data1': output})
-
+    return render(request, 'FirstPage.html')
 
 def table_list(request):
     with connection.cursor() as cur:
@@ -37,3 +22,9 @@ def table_list(request):
                         """)
             tables = [f"{row[0]}.{row[1]}" for row in cur.fetchall()]
             return render(request, 'tables.html', {'tables': tables})
+    
+def FirstPage(request):
+     return render(request, 'FirstPage.html')
+
+def Mapview(request):
+     return render(request, 'Mapview.html')
