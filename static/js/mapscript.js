@@ -155,6 +155,7 @@ function Masterplan1(checkbox, layerName) {
         "RoadCenterLine": {
             url: "http://107.149.105.165:8080/geoserver/SpatialData/wms",
             layers: "SpatialData:Road_Center_Line",
+            maxZoom: 30
             // bounds: [[18.82385378319702, 78.58564940534033], [18.886220028083216, 78.65497509892302]]
           
         }

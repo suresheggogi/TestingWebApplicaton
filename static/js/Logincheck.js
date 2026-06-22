@@ -4,9 +4,11 @@ document.addEventListener("DOMContentLoaded", function () {
   const pass = document.getElementById("unamepwd").value;
 
   homeButton.addEventListener("click", function () {
-    if (user === "suresh" && pass === "suresh") {
+    if (user === "suresh" && pass === "suresh")
+       {
       window.location.href = "/home/";
-    } else {
+    } 
+    else {
       alert("Invalid credentials");
     }
   });
