@@ -3,7 +3,9 @@
     padding:0;
     box-sizing:border-box;
 }
-
+.body{
+    height: 2000px;
+}
 .top-header{
     background:#d9d9d9;
     height:55px;
@@ -326,10 +328,10 @@ nav ul li a:hover{
 }
 .About-Municipality{
     font-size:x-large;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family: 'Times New Roman'; 
     width: 80%;
     margin: 0 auto;        /* Center the div */
-    height: 150px;
+    height: 25%;
     overflow-y: auto;
     text-align: justify;
     padding: 20px;
