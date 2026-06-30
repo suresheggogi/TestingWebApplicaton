@@ -5,6 +5,10 @@ import sys
 from subprocess import PIPE, run
 import subprocess
 from django.db import connection
+import requests
+from django.http import JsonResponse
+
+
 
 def login_page(request):
     return render(request, 'LoginPage.html')
@@ -28,3 +32,14 @@ def FirstPage(request):
 
 def Mapview(request):
      return render(request, 'Mapview.html')
+
+
+
+
+def get_feature_info(request):
+     params = request.GET.dict()
+     geoserver_url = "http://107.149.105.165:8080/geoserver/SpatialData/wms"
+     response = requests.get(geoserver_url, params=params)
+     return JsonResponse(response.json(), safe=False)
+
+    

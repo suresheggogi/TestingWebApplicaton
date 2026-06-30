@@ -11,5 +11,6 @@ urlpatterns = [
      path('Mapview/', views.Mapview, name='Mapview'),
      # path('external/', views.Myexternal, name='Suresh'),
      # path('tables/', table_list, name='table_list'),
+     path("getfeatureinfo/", views.get_feature_info, name="getfeatureinfo"),
      
 ]

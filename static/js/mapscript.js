@@ -120,8 +120,85 @@ document.addEventListener("DOMContentLoaded", function () {
         };
         reader.readAsArrayBuffer(file);
     });
+
+     map.on("click", function(e) {
+        console.log("Map clicked");
+        if (map.hasLayer(wmsLayers["ExistingLandUse"])) {
+            getFeatureInfo(e, wmsLayers["ExistingLandUse"], "SpatialData:Existing_Land_Use_Metpally" );
+            }
+        });
+        
+   });
+
+
    
-});
+function getFeatureInfo(evt, layer, layerName) {
+
+    var point = map.latLngToContainerPoint(evt.latlng, map.getZoom());
+
+    var size = map.getSize();
+
+    var url =
+        layer._url +
+        L.Util.getParamString({
+            request: "GetFeatureInfo",
+            service: "WMS",
+            srs: "EPSG:4326",
+            styles: "",
+            transparent: true,
+            version: "1.1.1",
+            format: "image/png",
+            bbox: map.getBounds().toBBoxString(),
+            height: size.y,
+            width: size.x,
+            layers: layerName,
+            query_layers: layerName,
+            info_format: "application/json",
+            x: Math.round(point.x),
+            y: Math.round(point.y)
+        });
+
+    console.log(url);
+    fetch("/getfeatureinfo/?" + url.split("?")[1])
+    .then(response => response.json())
+    .then(data => {
+
+        if (data.features.length === 0) {
+
+            document.getElementById("attr-table1").innerHTML =
+                "<b>No feature selected.</b>";
+
+            return;
+        }
+
+        // Get properties of the selected WMS feature
+        var properties = data.features[0].properties;
+
+        // Build HTML table
+        var popupContent = "<table border='1' style='border-collapse:collapse;width:100%;'>";
+        popupContent += "<tr><th>Field</th><th>Value</th></tr>";
+
+        for (let key in properties) {
+
+            popupContent +=
+                "<tr>" +
+                "<td>" + key + "</td>" +
+                "<td>" + properties[key] + "</td>" +
+                "</tr>";
+        }
+
+        popupContent += "</table>";
+
+        // Display in your existing attribute table
+        document.getElementById("attr-table1").innerHTML = popupContent;
+
+    })
+    .catch(function (error) {
+        console.error(error);
+    });
+   
+
+}
 
 
 function openNav() {
@@ -131,11 +208,11 @@ function openNav() {
     function closeNav() {
         document.getElementById("mySidenav").style.width = "0";
         }
-    
-
-
 
 var wmsLayers = {};
+
+
+
 
 function Masterplan1(checkbox, layerName) {
 
@@ -194,6 +271,8 @@ function Masterplan1(checkbox, layerName) {
     }
 }
 
+
+                // Leaflet Map View
 function showmap(checkbox) {
     if (checkbox.checked) {
         if (!osmLayer) {
@@ -211,7 +290,7 @@ function showmap(checkbox) {
     }
 }
 
-// Satellite image view
+                // Satellite image view
 
 function showImage(checkbox) {
 
@@ -231,3 +310,4 @@ function showImage(checkbox) {
         }
     }
 }
+
